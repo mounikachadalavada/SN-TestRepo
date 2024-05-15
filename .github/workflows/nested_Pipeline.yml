@@ -1,6 +1,5 @@
  # This workflow uses ServiceNow custom actions that are certified by ServiceNow.
 
-
 name: Nested Pipeline workflow
 on: workflow_dispatch
   # push:
