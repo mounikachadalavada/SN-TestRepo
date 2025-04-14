@@ -1,0 +1,17 @@
+name: demo-github-actions-workflow
+on: workflow_dispatch
+jobs:
+  job_one:
+    name: jb1
+    runs-on: ubuntu-latest
+    steps:
+      - name: s1
+        run: |
+          echo "hello"
+  job_two:
+    name: jb2
+    runs-on: ubuntu-latest
+    steps:
+      - name: s1
+        run: |
+          echo: "job"
