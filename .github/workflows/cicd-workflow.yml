@@ -52,7 +52,7 @@ jobs:
           # Github Context
           context-github: ${{ toJSON(github) }}
           # JUnit xml report file name with path
-          xml-report-filename: testng.xml
+          xml-report-filename: testng1.xml
         
     # - name: Run Tests with Maven
     #   run: mvn -B test --file pom.xml
