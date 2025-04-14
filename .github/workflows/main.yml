@@ -14,4 +14,4 @@ jobs:
     steps:
       - name: s1
         run: |
-          echo: "job"
+          echo "job"
