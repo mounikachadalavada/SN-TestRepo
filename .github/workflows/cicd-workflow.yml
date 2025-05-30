@@ -112,7 +112,7 @@ jobs:
           # Orchestration Tool Id
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           # Display Name of the Job
-          job-name: 'Register Artifact'
+          job-name: 'RegisterArtifact'
           # Github Context
           context-github: ${{ toJSON(github) }}
           # List of Artifacts to be registered
@@ -213,7 +213,7 @@ jobs:
           # Name of the Package that contains list of artifacts
           package-name: 'app-devops-change-velocity-cicd.war'
           # Display Name of Job
-          job-name: 'Register Package'
+          job-name: 'RegisterPackage'
 
   change:
     name: Change Request
