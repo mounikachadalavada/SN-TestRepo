@@ -234,16 +234,16 @@ jobs:
           interval: '100'
           timeout: '3600'
           # changeCreationTimeOut: ;'1000'
-          # deployment-gate: '{"environment":"prod","jobName":"Deploy"}'
+          deployment-gate: '{"environment":"prod","jobName":"Deploy"}'
         
-  # deploy:
-  #   name: 'Deploy'
-  #   needs: change
-  #   runs-on: ubuntu-latest
-  #   environment: prod
-  #   steps:
-  #     - name: Run deployment scripts
-  #       run: echo Completed Deployment. 
+  deploy:
+    name: 'Deploy'
+    needs: change
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: Run deployment scripts
+        run: echo Completed Deployment. 
 
   getchange:
     # jobs that  must complete successfully before this job will run
