@@ -234,7 +234,7 @@ jobs:
           interval: '100'
           timeout: '3600'
           # changeCreationTimeOut: ;'1000'
-          deployment-gate: '{"environment":"prod","jobName":"Deploy"}'
+          # deployment-gate: '{"environment":"prod","jobName":"Deploy"}'
         
   deploy:
     name: 'Deploy'
