@@ -189,7 +189,7 @@ jobs:
           change-request: >-
             {"autoCloseChange":true,"attributes":{"short_description":"Automated
             Software
-            Deployments","description":"Automated
+            Deployments test","description":"Automated
             Software
             Deployment.","assignment_group":"a715cd759f2002002920bde8132e7018","chg_model":"007c4001c343101035ae3f52c1d3aeb2","implementation_plan":"Software
             update is tested and results can be found in Test Summaries
