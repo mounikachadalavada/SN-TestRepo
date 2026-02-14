@@ -26,14 +26,14 @@ jobs:
    # This action sets up the JFrog CLI with the Artifactory URL and access token     
    - uses: jfrog/setup-jfrog-cli@v3
      env:
-       JF_URL: "https://trialqmx3bo.jfrog.io"
-       JF_ACCESS_TOKEN: "eyJ2ZXIiOiIyIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYiLCJraWQiOiJaNUtpQ1M1RXNlSHFvUmJZdzhEbmIwV2haTjJIRC1lcEd6Y2JZb1VKdGE4In0.eyJzdWIiOiJqZmFjQDAxa2g4ZnBiM2I4ajd5MDl0cGpjMmQwM2pzL3VzZXJzL2F3YXN0aGkxIiwic2NwIjoiYXBwbGllZC1wZXJtaXNzaW9ucy9hZG1pbiIsImF1ZCI6IipAKiIsImlzcyI6ImpmZmVAMDFraDhmcGIzYjhqN3kwOXRwamMyZDAzanMiLCJleHAiOjE3NzE1NzY3MTAsImlhdCI6MTc3MDk2MTExMCwianRpIjoiNzM5YzdlMjQtNTA3OS00ZmMxLTg0ZTYtN2RhNTM4ZjdhNzE5IiwidGlkIjoiYTBrY3Fpcm56am43cyJ9.Helt06h6etsz4y0HDfC-TiQlWKzuJeymACnoEdLiexlIxbMnk5fshx8I7zCqSHTrnMEok6I4GesKZ1d_4Qhroyk_06pgSvRAMcNJuiBoF3g_5EYQL5kgWLmKoLQe6EyLhoj-94RmkhksNAJysKo_cf0y6nwW9MdSkXXk7eCQmXITAkRnKQCUTugdixrh34PDhDDeJOyL4e6mMGBhrBcdaRfPBwXJe-ra69Am7sX8Kj0g_rACBX1JfJmgvwhp8xoQcP1EMiPkEmrt_tEmlulKyG_65dfNRrQfAaGmennyvY6LN7OnhMkQEKsaUxd91iOzqsEnNZPPpMKQ8mrdl3tK0w"
+       JF_URL: '${{ secrets.JF_URL }}'
+       JF_ACCESS_TOKEN: '${{ secrets.JF_TOKEN}}'
 
 
    # This command adds a new server configuration to the JFrog CLI   
    - run: |
        export SERVER_ID="venkata7"
-       jf c add $SERVER_ID --url="https://trialqmx3bo.jfrog.io" --access-token="eyJ2ZXIiOiIyIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYiLCJraWQiOiJaNUtpQ1M1RXNlSHFvUmJZdzhEbmIwV2haTjJIRC1lcEd6Y2JZb1VKdGE4In0.eyJzdWIiOiJqZmFjQDAxa2g4ZnBiM2I4ajd5MDl0cGpjMmQwM2pzL3VzZXJzL2F3YXN0aGkxIiwic2NwIjoiYXBwbGllZC1wZXJtaXNzaW9ucy9hZG1pbiIsImF1ZCI6IipAKiIsImlzcyI6ImpmZmVAMDFraDhmcGIzYjhqN3kwOXRwamMyZDAzanMiLCJleHAiOjE3NzE1NzY3MTAsImlhdCI6MTc3MDk2MTExMCwianRpIjoiNzM5YzdlMjQtNTA3OS00ZmMxLTg0ZTYtN2RhNTM4ZjdhNzE5IiwidGlkIjoiYTBrY3Fpcm56am43cyJ9.Helt06h6etsz4y0HDfC-TiQlWKzuJeymACnoEdLiexlIxbMnk5fshx8I7zCqSHTrnMEok6I4GesKZ1d_4Qhroyk_06pgSvRAMcNJuiBoF3g_5EYQL5kgWLmKoLQe6EyLhoj-94RmkhksNAJysKo_cf0y6nwW9MdSkXXk7eCQmXITAkRnKQCUTugdixrh34PDhDDeJOyL4e6mMGBhrBcdaRfPBwXJe-ra69Am7sX8Kj0g_rACBX1JfJmgvwhp8xoQcP1EMiPkEmrt_tEmlulKyG_65dfNRrQfAaGmennyvY6LN7OnhMkQEKsaUxd91iOzqsEnNZPPpMKQ8mrdl3tK0w" --interactive=false
+       jf c add $SERVER_ID --url='${{ secrets.JF_URL }}' --access-token='${{ secrets.JF_TOKEN}}' --interactive=false
 
   # Upload the JFrog Artifact, in the below we are upload README.md artifact.
    - name: Run JFrog CLI Ping
