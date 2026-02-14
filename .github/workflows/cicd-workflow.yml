@@ -1,5 +1,5 @@
-name: CICD GitHub Mohita workflow 
-run-name: CICD Mona GitHub workflow 
+name: CICD GitHub Mounika workflow 
+run-name: CICD Mounika GitHub workflow 
 'on':
   workflow_dispatch:
   pull_request:
