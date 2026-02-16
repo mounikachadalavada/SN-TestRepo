@@ -122,32 +122,32 @@ jobs:
           sonar-host-url: '${{ secrets.SONAR_URL }}'
           sonar-project-key: '${{ secrets.SONAR_PROJECT_KEY }}'
 
-  # ServiceNowSecurityScanResults:
-  #   # type of machine to run the job on
-  #   runs-on: ubuntu-latest
-  #   name: ServiceNow Security Scan Results
-  #   needs: [sonarScan]
-  #   steps:
-  #     - name: ServiceNow DevOps Security Results
-  #       uses: ServiceNow/servicenow-devops-security-result@v5.1.0
-  #       with:
-  #           # DevOps Integration Token of GitHub tool created in ServiceNow instance for token based authentication.
-  #           devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
-  #           # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
-  #           # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
-  #           # ServiceNow Instance URL
-  #           instance-url: ${{ secrets.SN_INSTANCE_URL }}
-  #           # Orchestration Tool Id
-  #           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
-  #           # GitHub Context
-  #           context-github: ${{ toJSON(github) }}
-  #           # Display Name of the Job
-  #           job-name: 'ServiceNow Security Scan Results'
-  #           security-result-attributes: '{"scanner": "Veracode", "applicationName": "10kflaws-72"}'
-  #           scanner: Scanning tool and is required e.g. Veracode.
-  #           applicationName: Name of your Veracode application and is required. This attribute is applicable only for Veracode.
-  #           buildVersion: Veracode Scan name /build version and is optional. This attribute is applicable only for Veracode.
-  #           securityToolId: Security tool onboarded in ServiceNow (sys_id of the onboarded security tool) and is optional.       
+  ServiceNowSecurityScanResults:
+    # type of machine to run the job on
+    runs-on: ubuntu-latest
+    name: ServiceNow Security Scan Results
+    needs: [sonarScan]
+    steps:
+      - name: ServiceNow DevOps Security Results
+        uses: ServiceNow/servicenow-devops-security-result@v5.1.0
+        with:
+            # DevOps Integration Token of GitHub tool created in ServiceNow instance for token based authentication.
+            devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+            # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
+            # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
+            # ServiceNow Instance URL
+            instance-url: ${{ secrets.SN_INSTANCE_URL }}
+            # Orchestration Tool Id
+            tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+            # GitHub Context
+            context-github: ${{ toJSON(github) }}
+            # Display Name of the Job
+            job-name: 'ServiceNow Security Scan Results'
+            security-result-attributes: '{"scanner": "Veracode", "applicationName": "10kflaws-72"}'
+            scanner: Scanning tool and is required e.g. Veracode.
+            applicationName: Name of your Veracode application and is required. This attribute is applicable only for Veracode.
+            buildVersion: Veracode Scan name /build version and is optional. This attribute is applicable only for Veracode.
+            securityToolId: Security tool onboarded in ServiceNow (sys_id of the onboarded security tool) and is optional.       
   registerPackage:
     name: Register Package
     if: always()
@@ -199,45 +199,45 @@ jobs:
           interval: '100'
           timeout: '3600'
           # "chg_model":"007c4001c343101035ae3f52c1d3aeb2",
-  # getchange:
-  #   needs: change
-  #   runs-on: ubuntu-latest
-  #   if: always()
-  #   name: ServiceNow DevOps Get Change
-  #   outputs:
-  #     change-request-number: '${{ steps.get_change.outputs.change-request-number }}'
-  #   steps:
-  #     - name: ServiceNow DevOps Get Change
-  #       uses: ServiceNow/servicenow-devops-get-change@v5.1.0
-  #       id: get_change
-  #       with:
-  #         instance-url: '${{ secrets.SN_INSTANCE_URL }}'
-  #         devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
-  #         devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
-  #         tool-id: '${{ secrets.SN_ORCHESTRATION_TOOL_ID }}'
-  #         context-github: '${{ toJSON(github) }}'
-  #         change-details: '{"build_number":"","pipeline_name":"","stage_name":"Change Request"}'
-  #     - name: Output of ServiceNow DevOps Get Change
-  #       run: >-
-  #         echo 'Output of ServiceNow DevOps Get Change is ->
-  #         change-request-number = ${{
-  #         steps.get_change.outputs.change-request-number }}' >> $GITHUB_OUTPUT
-  # updatechange:
-  #   needs: getchange
-  #   runs-on: ubuntu-latest
-  #   name: ServiceNow DevOps Update Change
-  #   if: always()
-  #   steps:
-  #     - name: ServiceNow DevOps Update Change
-  #       uses: ServiceNow/servicenow-devops-update-change@v5.1.0
-  #       id: update_change
-  #       with:
-  #         instance-url: '${{ secrets.SN_INSTANCE_URL }}'
-  #         devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
-  #         devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
-  #         tool-id: '${{ secrets.SN_ORCHESTRATION_TOOL_ID }}'
-  #         context-github: '${{ toJSON(github) }}'
-  #         change-request-number: '${{needs.getchange.outputs.change-request-number}}'
-  #         change-request-details: >-
-  #           {"state":"3","close_code":"successful_issues","close_notes":"Test
-  #           results successful with upadate change step"}
+  getchange:
+    needs: change
+    runs-on: ubuntu-latest
+    if: always()
+    name: ServiceNow DevOps Get Change
+    outputs:
+      change-request-number: '${{ steps.get_change.outputs.change-request-number }}'
+    steps:
+      - name: ServiceNow DevOps Get Change
+        uses: ServiceNow/servicenow-devops-get-change@v5.1.0
+        id: get_change
+        with:
+          instance-url: '${{ secrets.SN_INSTANCE_URL }}'
+          devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
+          devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
+          tool-id: '${{ secrets.SN_ORCHESTRATION_TOOL_ID }}'
+          context-github: '${{ toJSON(github) }}'
+          change-details: '{"build_number":"","pipeline_name":"","stage_name":"Change Request"}'
+      - name: Output of ServiceNow DevOps Get Change
+        run: >-
+          echo 'Output of ServiceNow DevOps Get Change is ->
+          change-request-number = ${{
+          steps.get_change.outputs.change-request-number }}' >> $GITHUB_OUTPUT
+  updatechange:
+    needs: getchange
+    runs-on: ubuntu-latest
+    name: ServiceNow DevOps Update Change
+    if: always()
+    steps:
+      - name: ServiceNow DevOps Update Change
+        uses: ServiceNow/servicenow-devops-update-change@v5.1.0
+        id: update_change
+        with:
+          instance-url: '${{ secrets.SN_INSTANCE_URL }}'
+          devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
+          devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
+          tool-id: '${{ secrets.SN_ORCHESTRATION_TOOL_ID }}'
+          context-github: '${{ toJSON(github) }}'
+          change-request-number: '${{needs.getchange.outputs.change-request-number}}'
+          change-request-details: >-
+            {"state":"3","close_code":"successful_issues","close_notes":"Test
+            results successful with upadate change step"}
